@@ -310,8 +310,8 @@ def betterEvaluationFunction(currentGameState):
     for ghost, scaredTime in zip(ghosts, scared):
         distance = manhattanDistance(pacman, ghost.getPosition())
         if (scaredTime > 1):
-            score += 2. / (1 + distance)
-        elif(scaredTime < 1 and distance <= 1):
+            score += 1. / (1 + distance)
+        elif(scaredTime < 1 and distance <= 2):
             score -= 4
         elif(scaredTime <= 1):
             score += 2
@@ -322,7 +322,7 @@ def betterEvaluationFunction(currentGameState):
         
     for capsule in capsules:
         distance = manhattanDistance(pacman, capsule)
-        score += 1. / (1. + distance)
+        score += 2. / (1. + distance)
         
     score -= len(foods)
     score -= len(capsules)*3
